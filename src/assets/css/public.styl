@@ -1,0 +1,533 @@
+/* 布局 */
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  transition: all 0.2s;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.2s;
+}
+
+.fix-bottom{
+  position: fixed;
+  bottom: 0;
+}
+
+/* 固定参数 */
+
+.fix-lc{
+  left: 0;
+  width: 750px;
+}
+
+/* flex参数 */
+
+.al-start {
+  align-items: flex-start;
+}
+
+.al-end {
+  align-items: flex-end;
+}
+
+.al-center {
+  align-items: center;
+}
+
+.ju-start {
+  justify-content: flex-start;
+}
+
+.ju-center {
+  justify-content: center;
+}
+
+.ju-bottom {
+  justify-content: flex-end;
+}
+
+.ju-be {
+  justify-content: space-between;
+}
+
+.ju-ev {
+  justify-content: space-evenly;
+}
+
+.ju-ar {
+  justify-content: space-around;
+}
+
+/* 宽高 */
+
+.w-750 {
+  width: 750px;
+}
+
+.w-710 {
+  width: 710px;
+}
+
+.w-710-fill {
+  width: 710px;
+  margin: 0 20px;
+}
+
+.w-690 {
+  width: 690px;
+}
+
+.w-690-fill {
+  width: 690px;
+  margin: 0 30px;
+}
+
+.p-690-fill {
+  width: 690px;
+  padding: 0 30px;
+}
+
+.h-90{
+  height: 90px;
+}
+
+.h-fill {
+  height: 100%;
+}
+
+/* 快捷盒子 */
+
+.box-30 {
+  width: 30px;
+  height: 30px;
+}
+
+.box-26 {
+  width: 26px;
+  height: 26px;
+}
+
+.box-40 {
+  width: 40px;
+  height: 40px;
+}
+
+/* 盒子模型 */
+
+.mar-h-10 {
+  margin: 0 10px;
+}
+
+.mar-h-20 {
+  margin: 0 20px;
+}
+
+.mar-h-30 {
+  margin: 0 30px;
+}
+
+.mar-h-40 {
+  margin: 0 40px;
+}
+
+.mar-h-50 {
+  margin: 0 50px;
+}
+
+.mar-v-10 {
+  margin: 10px 0;
+}
+
+.mar-v-20 {
+  margin: 20px 0;
+}
+
+.mar-v-30 {
+  margin: 30px 0;
+}
+
+.mar-v-40 {
+  margin: 40px 0;
+}
+
+.mar-v-50 {
+  margin: 50px 0;
+}
+
+.pad-h-10 {
+  padding: 0 10px;
+}
+
+.pad-h-20 {
+  padding: 0 20px;
+}
+
+.pad-h-30 {
+  padding: 0 30px;
+}
+
+.pad-h-40 {
+  padding: 0 40px;
+}
+
+.pad-h-50 {
+  padding: 0 50px;
+}
+
+.pad-v-10 {
+  padding: 10px 0;
+}
+
+.pad-v-20 {
+  padding: 20px 0;
+}
+
+.pad-v-30 {
+  padding: 30px 0;
+}
+
+.pad-v-40 {
+  padding: 40px 0;
+}
+
+.pad-v-50 {
+  padding: 50px 0;
+}
+
+.pad-around-20 {
+  padding: 20vh
+}
+
+.mar-l-10 {
+  margin-left: 10px;
+}
+
+.mar-r-10 {
+  margin-right: 10px;
+}
+
+.mar-t-10 {
+  margin-top: 10px;
+}
+
+.mar-b-10 {
+  margin-bottom: 10px;
+}
+
+.mar-l-20 {
+  margin-left: 20px;
+}
+
+.mar-r-20 {
+  margin-right: 20px;
+}
+
+.mar-t-20 {
+  margin-top: 20px;
+}
+
+.mar-b-20 {
+  margin-bottom: 20px;
+}
+
+.mar-l-30 {
+  margin-left: 30px;
+}
+
+.mar-r-30 {
+  margin-right: 30px;
+}
+
+.mar-t-30 {
+  margin-top: 30px;
+}
+
+.mar-b-30 {
+  margin-bottom: 30px;
+}
+
+.mar-l-40 {
+  margin-left: 40px;
+}
+
+.mar-r-40 {
+  margin-right: 40px;
+}
+
+.mar-t-40 {
+  margin-top: 40px;
+}
+
+.mar-t-100{
+  margin-top: 100px;
+}
+
+.mar-b-40 {
+  margin-bottom: 40px;
+}
+
+.mar-l-50 {
+  margin-left: 50px;
+}
+
+.mar-r-50 {
+  margin-right: 50px;
+}
+
+.mar-t-50 {
+  margin-top: 50px;
+}
+
+.mar-b-50 {
+  margin-bottom: 50px;
+}
+
+.pad-l-10 {
+  padding-left: 10px;
+}
+
+.pad-r-10 {
+  padding-right: 10px;
+}
+
+.pad-t-10 {
+  padding-top: 10px;
+}
+
+.pad-b-10 {
+  padding-bottom: 10px;
+}
+
+.pad-l-20 {
+  padding-left: 20px;
+}
+
+.pad-r-20 {
+  padding-right: 20px;
+}
+
+.pad-t-20 {
+  padding-top: 20px;
+}
+
+.pad-b-20 {
+  padding-bottom: 20px;
+}
+
+.pad-l-30 {
+  padding-left: 30px;
+}
+
+.pad-r-30 {
+  padding-right: 30px;
+}
+
+.pad-t-30 {
+  padding-top: 30px;
+}
+
+.pad-b-30 {
+  padding-bottom: 30px;
+}
+
+.pad-l-40 {
+  padding-left: 40px;
+}
+
+.pad-r-40 {
+  padding-right: 40px;
+}
+
+.pad-t-40 {
+  padding-top: 40px;
+}
+
+.pad-b-40 {
+  padding-bottom: 40px;
+}
+
+.pad-l-50 {
+  padding-left: 50px;
+}
+
+.pad-r-50 {
+  padding-right: 50px;
+}
+
+.pad-t-50 {
+  padding-top: 50px;
+}
+
+.pad-b-50 {
+  padding-bottom: 50px;
+}
+
+/* 各种功能线 */
+
+.lin-r-30 {
+  width: 720px;
+  height: 1px;
+  margin-left: 30px;
+  background: #e3e3e3;
+}
+
+.lin-r-60 {
+  width: 690px;
+  height: 1px;
+  margin-left: 60px;
+  background: #e3e3e3;
+}
+
+.lin-full {
+  width: 750px;
+  background: #e3e3e3;
+  height: 1px;
+}
+
+.span-10 {
+  width: 750px;
+  height: 10px;
+  background: #f2f2f2;
+}
+
+/* 组件 */
+
+/* 沾满整行的文字按钮 */
+
+.row-btn{
+  width: 750px;
+  height: 70px;
+  text-align: center;
+  line-height: 70px;
+  font-size: 22px;
+  color: #509fee;
+  background: white;
+  transition: all 0.2s;
+}
+
+.row-btn:active{
+  background: #f2f2f2;
+  transition: all 0.2s;
+}
+
+/* 占满整行的圆角按钮 */
+.radius-btn{
+  width: 690px;
+  height: 70px;
+  text-align: center;
+  line-height: 70px;
+  font-size: 22px;
+  color: #fff;
+  background: #2CD089;
+  transition: all 0.2s;
+  border-radius: 50px;
+}
+
+.radius-10
+  border-radius: 10px
+
+.radius-btn:active{
+  background: #21B06C;
+  transition: all 0.2s;
+}
+
+/* 字体大小 */
+
+.h1 {
+  font-size: 35px;
+}
+
+.h2 {
+  font-size: 32px;
+}
+
+.h3 {
+  font-size: 30px;
+}
+
+.h4 {
+  font-size: 28px;
+}
+
+.p {
+  font-size: 26px;
+}
+
+.t1 {
+  font-size: 24px;
+}
+
+.t2 {
+  font-size: 22px;
+}
+
+/* 字体属性 */
+
+.tx-al-l{
+  text-align: left;
+}
+
+.tx-al-r{
+  text-align: right;
+}
+
+.tx-al-c{
+  text-align: center;
+}
+
+.b{
+  font-weight: bold;
+}
+.t-indent{
+  text-indent: 2em;
+}
+
+/* 字体颜色 */
+.t-gray{
+  color: #ababab
+}
+.t-dgray{
+  color: #666
+}
+.t-dblue{
+  color: #3F5DB5
+}
+.t-green{
+  color: #21B06C
+}
+.t-white{
+  color: #fff
+}
+
+/* 段落行间距和行高 */
+.p-lh-ls{
+  letter-spacing: 2px;
+  line-height: 40px;
+  text-align:justify;
+}
+
+/* 背景色 */
+.bg-white{
+  background: #fff !important;
+}
+.bg-gray{
+  background: #f2f2f2
+}
+
+/* 边框 */
+.bor-b{
+  border-bottom: 1px solid #f2f2f2
+}
+
+.avatar
+  border-radius: 50%
+  height 100px
+  width 100px

@@ -1,12 +1,30 @@
 <template>
+<div>
+<mt-header :title="title">
+  <router-link to="" slot="left">
+    <mt-button icon="back" @click.native="$router.back(-1)">返回</mt-button>
+  </router-link>
+  <mt-button icon="more" slot="right"></mt-button>
+</mt-header>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
     <router-view/>
   </div>
+</div>
+  
 </template>
+<script>
+export default {
+  created() {
+    this.$store.commit('setNavtitle', '同乡会')
+  },
+  computed:{
+    title() {
+      console.log(this.$store.state)
+      return this.$store.state.navTitle
+    }
+  }
+}
+</script>
 <style lang="stylus">
 #app
   font-family 'Avenir', Helvetica, Arial, sans-serif
