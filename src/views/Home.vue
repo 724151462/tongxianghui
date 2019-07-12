@@ -50,7 +50,7 @@ export default {
   },
   created() {
     this.uuid = this.$router.currentRoute.query.uuid
-    alert('123')
+    alert(this.uuid)
     this.login(this.uuid)
   },
 
