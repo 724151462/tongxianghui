@@ -57,7 +57,7 @@ export default {
   methods: {
     login(unionId) {
       login({unionId}).then(res => {
-        console.log(res)
+        alert(res.data)
         if(!window.localStorage){
             alert("浏览器不支持localstorage");
             return false;
