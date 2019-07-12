@@ -31,7 +31,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 axios.defaults.timeout = 10000
 axios.defaults.responseType = 'json'
-axios.defaults.baseURL = '/api';
 let token = localStorage.getItem('token')
 console.log(token)
 if(token) axios.defaults.headers = {token}
