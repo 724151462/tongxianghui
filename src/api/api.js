@@ -29,3 +29,7 @@ export function getYzm(data) {
 export function register(data) {
   return commonsAjax(`mp/v1/user/register`, data, 'put')
 }
+
+export function wxSign(data) {
+  return commonsAjax(`/jsapi/v1/signature`, data, 'post')
+}
