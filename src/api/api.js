@@ -19,7 +19,7 @@ export function postAnsform(data) {
 }
 
 export function login(data) {
-  return commonsAjax(`wxx/v1/login`, data, 'post')
+  return commonsAjax(`http://255920k78z.qicp.vip/wxx/v1/login`, data, 'post')
 }
 
 export function getYzm(data) {
