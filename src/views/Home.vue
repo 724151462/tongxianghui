@@ -58,6 +58,10 @@ export default {
     login(unionId) {
       login({unionId}).then(res => {
         console.log(res)
+        if(!window.localStorage){
+            alert("浏览器不支持localstorage");
+            return false;
+        }
         if(res.msg === 'Auth failed' || res.msg === '已存在该记录'){
           console.log(123)
           localStorage.setItem('uuid', this.uuid)
