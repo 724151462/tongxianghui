@@ -14,7 +14,7 @@ import Cookie from "js-cookie";
 console.log(process.env.NODE_ENV)
 if (process.env.NODE_ENV === 'production') {
   console.log(123)
-  axios.defaults.baseURL = 'http://255920k78z.qicp.vip/'
+  axios.defaults.baseURL = 'http://255920k78z.qicp.vip/api/'
   /*第二层if，根据.env文件中的VUE_APP_FLAG判断是生产环境还是测试环境*/
   // if (process.env.VUE_APP_FLAG === 'prod') {
   //   //production 生产环境
