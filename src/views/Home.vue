@@ -63,8 +63,9 @@ export default {
             return false;
         }
         if(res.msg === 'Auth failed' || res.msg === '已存在该记录'){
-          console.log(123)
+          alert('已注册')
           localStorage.setItem('uuid', this.uuid)
+          alert(localStorage.getItem('uuid'))
         }else if(res.code === 200) {
           localStorage.setItem('token', res.data.token)
         }
