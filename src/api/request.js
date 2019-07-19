@@ -83,6 +83,7 @@ export function commonsAjax(url, data, method, headers) {
     if (data !== '' && method === 'patch') {
       date.data = data
     }
+    console.log(date)
     axios(date).then(res => {
       reject(res.data)
     }).catch(error => {

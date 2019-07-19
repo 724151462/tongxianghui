@@ -50,23 +50,21 @@ export default {
   },
   created() {
     this.uuid = this.$router.currentRoute.query.uuid
-    alert(this.uuid)
     this.login(this.uuid)
   },
 
   methods: {
     login(unionId) {
       login({unionId}).then(res => {
-        alert(res.data)
         if(!window.localStorage){
             alert("浏览器不支持localstorage");
             return false;
         }
         if(res.msg === 'Auth failed' || res.msg === '已存在该记录'){
-          alert('已注册')
           localStorage.setItem('uuid', this.uuid)
           alert(localStorage.getItem('uuid'))
         }else if(res.code === 200) {
+          // alert(res.data)
           localStorage.setItem('token', res.data.token)
         }
       })

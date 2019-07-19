@@ -1,6 +1,7 @@
 <template>
   <div :style="bg" class="bg row ju-center">
     <div class="column al-center" style="margin-top: 100px">
+      <!-- <img :src="btn.sign" alt="" @click="wxScan"> -->
       <img :src="btn.sign" alt="" @click="wxScan">
       <img class="mar-t-30" :src="btn.ans" alt="">
       <span class="mar-t-30">中奖记录</span>
@@ -11,14 +12,6 @@
 <script>
 import wx from 'weixin-js-sdk'
 import {wxSign} from '../../api/api'
-wx.config({
-    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-    appId: '', // 必填，公众号的唯一标识
-    timestamp: '', // 必填，生成签名的时间戳
-    nonceStr: '', // 必填，生成签名的随机串
-    signature: '',// 必填，签名
-    jsApiList: [] // 必填，需要使用的JS接口列表
-});
 export default {
   data() {
     return {
@@ -28,7 +21,8 @@ export default {
       btn: {
         sign: require('../../assets/images/sign_btn.png'),
         ans: require('../../assets/images/ans_btn.png')
-      }
+      },
+      config: {}
     }
     
   },
@@ -36,21 +30,27 @@ export default {
     this.getSign()
   },
   methods:{
+    signTip() {
+      this.$toast('请使用微信扫一扫功能签到~')
+    },
     getSign() {
       wxSign({url: location.href}).then(res => {
         let data = JSON.parse(res.data)
+        this.config = JSON.parse(res.data)
         console.log(data)
         wx.config({
           debug: true,
-          appId: 'wx2001ab22f6203059',
+          appId: 'wx914c713e23caac49',
           timestamp: data.timestamp,
-          nonceStr: data.nonceStr,
-          signature: data.signature
+          nonceStr: data.noncestr,
+          signature: data.signature,
+          jsApiList: ['scanQRCode'] // 必填，需要使用的JS接口列表
         })
       })
     },
     wxScan() {
       console.log(12345)
+      
       wx.ready(function () {
   // config信息验证成功后会执行ready方法,所有接口调用都必须在config接口获得结果之后
   // config 是一个客户端的异步操作,所以如果需要在页面加载时调用相关接口,则须把相关接口放在ready函数中调用来确保正确执行.对于用户触发是才调用的接口,则可以直接调用,不需要放在ready函数中
