@@ -26,7 +26,7 @@ export default {
     };
   },
   created() {
-    this.getSign();
+    // this.getSign();
   },
   methods: {
     signTip() {
