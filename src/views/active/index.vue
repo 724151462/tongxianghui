@@ -26,7 +26,7 @@ export default {
     };
   },
   created() {
-    // this.getSign();
+    this.getSign();
   },
   methods: {
     signTip() {
@@ -36,7 +36,7 @@ export default {
       
       wxSign({ url: location.href }).then(res => {
         let data = JSON.parse(res.data);
-        this.config = JSON.parse(res.data);
+        // this.config = JSON.parse(res.data);
         console.log(data);
         wx.config({
           debug: true,
