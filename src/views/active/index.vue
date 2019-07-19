@@ -25,7 +25,7 @@ export default {
       config: {}
     };
   },
-  created() {
+  mounted() {
     this.getSign();
   },
   methods: {
