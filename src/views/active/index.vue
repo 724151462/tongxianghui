@@ -34,7 +34,7 @@ export default {
     },
     getSign() {
       
-      wxSign({ url: location.href }).then(res => {
+      wxSign({ url: location.href.splic('#')[0] }).then(res => {
         let data = JSON.parse(res.data);
         // this.config = JSON.parse(res.data);
         console.log(data);
