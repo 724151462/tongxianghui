@@ -52,6 +52,19 @@ export default {
       console.log(12345)
       
       wx.ready(function () {
+        wxSign({url: location.href}).then(res => {
+        let data = JSON.parse(res.data)
+        this.config = JSON.parse(res.data)
+        console.log(data)
+        wx.config({
+          debug: true,
+          appId: 'wx914c713e23caac49',
+          timestamp: data.timestamp,
+          nonceStr: data.noncestr,
+          signature: data.signature,
+          jsApiList: ['scanQRCode'] // 必填，需要使用的JS接口列表
+        })
+      })
   // config信息验证成功后会执行ready方法,所有接口调用都必须在config接口获得结果之后
   // config 是一个客户端的异步操作,所以如果需要在页面加载时调用相关接口,则须把相关接口放在ready函数中调用来确保正确执行.对于用户触发是才调用的接口,则可以直接调用,不需要放在ready函数中
   wx.checkJsApi({ // 判断当前客户端版本是否支持指定JS接口
