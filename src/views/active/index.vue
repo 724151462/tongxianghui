@@ -33,7 +33,7 @@ export default {
       this.$toast("请使用微信扫一扫功能签到~");
     },
     getSign() {
-      
+      alert(123)
       wxSign({ url: location.href }).then(res => {
         let data = JSON.parse(res.data);
         // this.config = JSON.parse(res.data);
