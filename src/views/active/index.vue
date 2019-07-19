@@ -4,7 +4,7 @@
       <!-- <img :src="btn.sign" alt="" @click="wxScan"> -->
       <img :src="btn.sign" alt @click="wxScan" />
       <img class="mar-t-30" :src="btn.ans" alt />
-      <span class="mar-t-30">中奖记录</span>
+      <span class="mar-t-30">中奖记录123</span>
     </div>
   </div>
 </template>
