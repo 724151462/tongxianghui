@@ -7,7 +7,8 @@ console.log(mutations)
 
 export default new Vuex.Store({
   state: {
-    navTitle: ''
+    navTitle: '',
+    actId: localStorage.getItem('actId') || ''
   },
   mutations,
   actions: {

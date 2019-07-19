@@ -2,16 +2,17 @@
   <div :style="bg" class="bg row ju-center">
     <div class="column al-center" style="margin-top: 100px">
       <!-- <img :src="btn.sign" alt="" @click="wxScan"> -->
-      <img :src="btn.sign" alt @click="wxScan" />
-      <img class="mar-t-30" :src="btn.ans" alt />
-      <span class="mar-t-30">中奖记录123</span>
+      <img :src="btn.sign" @click="signNum" />
+      <img class="mar-t-30" :src="btn.ans" @click="toAns" />
+      <span class="mar-t-30">中奖记录</span>
     </div>
   </div>
 </template>
 
 <script>
 import wx from "weixin-js-sdk";
-import { wxSign } from "../../api/api";
+import { MessageBox } from 'mint-ui';
+import { wxSign, signNum, getSubject } from "../../api/api";
 export default {
   data() {
     return {
@@ -22,22 +23,46 @@ export default {
         sign: require("../../assets/images/sign_btn.png"),
         ans: require("../../assets/images/ans_btn.png")
       },
-      config: {}
+      config: {},
+      actId: this.$store.state.actId,
+      signCode: ''
     };
   },
   mounted() {
-    this.getSign();
+    // this.getSign();
+    console.log(this.actId)
   },
   methods: {
     signTip() {
       this.$toast("请使用微信扫一扫功能签到~");
     },
+    signNum() {
+      MessageBox.prompt('请输入签到码').then(({ value, action }) => {
+        signNum(value)
+        .then(res => {
+           if(res.code == 200) {
+             this.$toast('恭喜，签到成功~')
+           }
+        })
+      }).catch(()=> {
+        this.$toast('您取消了输入')
+      })
+      
+    },
+    toAns() {
+      getSubject(this.actId).then(res => {
+        if(res.code === 200) {
+          this.$router.push({path: '/ques/list'})
+        }else{
+          this.$toast(res.msg)
+        }
+      })
+      
+    },
     getSign() {
-      alert(123)
       wxSign({ url: location.href }).then(res => {
         let data = JSON.parse(res.data);
         // this.config = JSON.parse(res.data);
-        console.log(data);
         wx.config({
           debug: true,
           appId: "wx914c713e23caac49",

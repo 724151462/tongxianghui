@@ -94,11 +94,12 @@ export default {
       ],
       ansRes:[],
       infoWindow: false,
-      hasSubmit: false
+      hasSubmit: false,
+      actId: this.$store.state.actId
     };
   },
   created() {
-    this.getSubject(1)
+    this.getSubject(this.actId)
   },
   methods: {
     finish() {

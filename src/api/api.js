@@ -33,3 +33,7 @@ export function register(data) {
 export function wxSign(data) {
   return commonsAjax(`/jsapi/v1/signature`, data, 'post')
 }
+
+export function signNum(data) {
+  return commonsAjax(`/interaction/v1/qrcode/${data}`)
+}

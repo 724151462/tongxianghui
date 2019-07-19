@@ -19,6 +19,7 @@ export default {
   methods: {
     getId(data) {
       console.log(data)
+      this.$store.commit('setActId', data.interactionId)
       this.$router.push({path: '/active/index'})
     },
     getActList() {
