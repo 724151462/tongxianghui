@@ -8,10 +8,10 @@
     <mt-field label="性别" placeholder="请输入性别" v-model="info.sex"></mt-field>
     <mt-field label="家乡镇区" placeholder="输入家乡镇区" type="" v-model="homeTown"></mt-field>
     <mt-field label="家乡村组" placeholder="输入家乡村组" type="" v-model="cunzu"></mt-field> -->
-    <mt-field label="手机号" v-model="mobile">
+    <mt-field label="手机号" placeholder="输入手机号" v-model="mobile">
       <mt-button type="success" size="small" @click="sendMsg">发送</mt-button>
     </mt-field>
-    <mt-field label="验证码" placeholder="输入手机号" v-model="captcha"></mt-field>
+    <mt-field label="验证码" placeholder="输入验证码" v-model="captcha"></mt-field>
     <!-- <mt-field label="紧急电话" placeholder="请输入数字" type="number" v-model="number"></mt-field>
     <mt-field label="工作地市" placeholder="输入工作地市"></mt-field> -->
   </div>

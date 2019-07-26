@@ -1,22 +1,22 @@
 <template>
   <div class="dr-bg" :style="bg">
     <div class="main-info column">
-      <span style="font-size: 30px">同乡小姐姐</span>
-      <span>1985年3月/演员</span>
+      <span style="font-size: 30px">{{info.peopleName}}</span>
+      <span>{{info.peopleBirthday}}/{{info.peopleOccupation}}</span>
     </div>
     <div class="photo-con">
       <div class="column pad-v-30 pad-l-30">
         <span class="pad-b-20">相册</span>
         <div class="row">
-          <img :src="require('../../assets/images/dr_imgl.jpg')" width="180" style="border-radius: 5px" alt="">
-          <div class="column mar-l-30 ju-be" style="height: 180px">
+          <img :src="require('../../assets/images/dr_imgl.jpg')" width="150" style="border-radius: 5px" alt="">
+          <div class="column mar-l-30 ju-be" style="height: 150px">
             <div class="row">
-              <img width="80" :src="require('../../assets/images/dr_imgr.jpg')" alt="">
-              <img width="80" class="mar-l-30" :src="require('../../assets/images/dr_imgr.jpg')" alt="">
+              <img width="60" :src="require('../../assets/images/dr_imgr.jpg')" alt="">
+              <img width="60" class="mar-l-30" :src="require('../../assets/images/dr_imgr.jpg')" alt="">
             </div>
             <div class="row">
-              <img width="80" :src="require('../../assets/images/dr_imgr.jpg')" alt="">
-              <img width="80" class="mar-l-30" :src="require('../../assets/images/dr_imgr.jpg')" alt="">
+              <img width="60" :src="require('../../assets/images/dr_imgr.jpg')" alt="">
+              <img width="60" class="mar-l-30" :src="require('../../assets/images/dr_imgr.jpg')" alt="">
             </div>
           </div>
         </div>
@@ -26,9 +26,9 @@
         <span style="width: 120px" :class="['pad-b-10','mar-l-30', tab==='tab2'? 'tab' : '']" @click="tabChange('tab2')">小视频</span>
       </div>
       <div v-if="tab==='tab1'" class="column w-690-fill" style="text-align: start">
-        <span class="mar-t-20">同乡小姐姐</span>
+        <!-- <span class="mar-t-20"></span> -->
         <span class="mar-t-20">
-          简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介
+          {{info.desc}}
         </span>
       </div>
       <div v-else class="column w-690-fill" style="text-align: start">
@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import {peopleDetail} from '../../api/api'
 export default {
   data() {
     return{
@@ -50,16 +51,24 @@ export default {
         'background-repeat': 'no-repeat',
         'background-size': '100%'
       },
-      tab: 'tab1'
+      tab: 'tab1',
+      info: {}
     }
   },
-  props: ['btnShow'],
+  props: ['btnShow', 'id'],
   created() {
     console.log(this.$route)
+    this.getDetail()
   },
   methods: {
     tabChange(tab) {
       this.tab = tab
+    },
+    getDetail() {
+      peopleDetail(this.id).then(res => {
+        this.info = res.data
+        this.bg.background = `url(${res.data.avatar})`
+      })
     }
   },
 }
@@ -74,7 +83,7 @@ export default {
     position relative
     color #fff
     width 80%
-    top 412px
+    top 400px
     left 35px
   .photo-con
     position absolute

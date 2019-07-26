@@ -8,10 +8,18 @@
     </section>
     <mt-tab-container v-model="active" :swipeable='true'>
     <mt-tab-container-item id="tab-container1">
-      <div class="mar-b-10 column ju-start bg-white pad-h-30" @click="detail">
-        <span class="pad-t-20 b">标题同乡之间。、、、、、</span>
-        <p class="content t-gray">互助而自由组件的非盈利互助而自由组件的非盈利、、、、、、、、、。。。。。。。。。。。。</p>
-        <img src="https://org.modao.cc/uploads3/images/2240/22402260/raw_1530869899.png" width="300" alt="">
+      <div v-for="(item, index) in topList" :key="index" class="mar-b-10 column ju-start bg-white pad-h-30" @click="detail(item.topicId)">
+        <div class="row mar-t-10">
+          <img class="avatar" :src="item.avatar" alt="">
+          <div class="column mar-l-10">
+            <span class="pad-b-20 b">{{item.topicTitle}}</span>
+            <span class="t-gray p">{{item.subDate}}</span>
+          </div>
+        </div>
+        <p class="content t-gray">{{item.description}}</p>
+        <div v-if="item.topicImages.length !== 0">
+          <img v-for="(img, index) in item.topicImages" :key="index" :src="img" width="300" alt="">
+        </div>
         <div class="row bg-white" style="width: 100%">
           <div style="width:50%" class="row ju-center mar-v-10">
             <img width="30" :src="require('../../assets/images/dianzan1.png')" alt="">
@@ -50,13 +58,23 @@
 </template>
 
 <script>
+import {topicList} from '../../api/api'
 export default {
   data() {
     return{
-      active: 'tab-container1'
+      active: 'tab-container1',
+      topList: []
     }
   },
+  created() {
+    this.getList()
+  },
   methods:{
+    getList() {
+      topicList().then(res => {
+        this.topList = res.data.pageData
+      })
+    },
     handleTchange(tname) {
       this.active = tname
     },

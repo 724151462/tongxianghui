@@ -1,10 +1,10 @@
 <template>
   <div class="bg">
     <div class="parent">
-      <div class="child column al-center ju-center" v-for="(item, index) in drList" :key="index" @click="toDrym">
-        <img class="avatar" style="height: 80px;width: 80px" src="https://org.modao.cc/uploads4/images/3625/36255319/v2_ptmsgo.jpg" alt="">
+      <div class="child column al-center ju-center" v-for="(item, index) in drList" :key="index" @click="toDrym(item.peopleId)">
+        <img class="avatar" style="height: 80px;width: 80px" :src="item.avatar || ''" alt="">
         <img :src="require('../../assets/images/huangguan.png')" width="25" class="huangguan" alt="">
-        <span style="margin-top: -20px">我是Angelababy</span>
+        <span style="margin-top: -20px">{{item.peopleName}}</span>
         <mt-button size="small" class="check mar-t-20">查 看</mt-button>
       </div>
     </div>
@@ -12,15 +12,25 @@
 </template>
 
 <script>
+import {getDrlist} from '../../api/api'
 export default {
   data() {
     return{
-      drList: [1,2,3]
+      drList: []
     }
   },
+  mounted() {
+    this.$store.commit('setNavtitle', '达人列表')
+    this.getDrlist()
+  },
   methods: {
-    toDrym() {
-      this.$router.push({name: 'drym',params: {btnShow: false}})
+    getDrlist() {
+      getDrlist().then(res => {
+        this.drList = res.data.pageData
+      })
+    },
+    toDrym(id) {
+      this.$router.push({name: 'drym',params: {btnShow: false, id }})
     }
   }
 }

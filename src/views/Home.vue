@@ -7,7 +7,6 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
 import Gongge from "@/components/Gongge.vue";
 import {
   login
@@ -49,6 +48,7 @@ export default {
     };
   },
   created() {
+    this.$store.commit('setNavtitle', '主页')
     this.uuid = this.$router.currentRoute.query.uuid
     this.login(this.uuid)
   },
@@ -62,7 +62,6 @@ export default {
         }
         if(res.msg === 'Auth failed' || res.msg === '已存在该记录'){
           localStorage.setItem('uuid', this.uuid)
-          alert(localStorage.getItem('uuid'))
         }else if(res.code === 200) {
           // alert(res.data)
           localStorage.setItem('token', res.data.token)
@@ -72,7 +71,6 @@ export default {
   },
   
   components: {
-    HelloWorld,
     Gongge
   }
 };

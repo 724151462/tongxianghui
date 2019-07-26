@@ -69,6 +69,11 @@ let routes = [
     component: () => import(/* webpackChunkName: "info" */ '../views/center/info.vue')
   },
   {
+    path: '/center/setinfo',
+    name: 'setinfo',
+    component: () => import(/* webpackChunkName: "setInfo" */ '../views/center/setInfo.vue')
+  },
+  {
     path: '/center/zbdr',
     name: 'zbdr',
     component: () => import(/* webpackChunkName: "zbdr" */ '../views/center/saveDr.vue')
@@ -77,7 +82,8 @@ let routes = [
     path: '/center/drym',
     name: 'drym',
     props:  (route) => ({
-      btnShow: route.params.btnShow 
+      btnShow: route.params.btnShow,
+      id: route.params.id
     }),
     component: () => import(/* webpackChunkName: "drym" */ '../views/center/drym.vue')
   }

@@ -42,9 +42,12 @@ axios.interceptors.response.use(
   res => {
     if (res.data && Number(res.data.code) === 401) {
       removeToken()
-      Globe_VM.$router.push({
-        path: '/center/zhuce'
-      })
+      Globe_VM.$toast('您还未注册,为您跳转注册页面...')
+      setTimeout(() => {
+        Globe_VM.$router.push({
+          path: '/center/zhuce'
+        })
+      }, 1000);
     }
     if (res.data) {
       return Promise.reject(res.data)

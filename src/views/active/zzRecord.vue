@@ -8,26 +8,26 @@
           <div class="row pad-h-30 mar-v-30">
             <img class="avatar" :src="require('../../assets/images/act_int.jpg')" width="30" alt="">
             <div class="column mar-l-20">
-              <span>用户名</span>
-              <span>13111111111</span>
+              <span>{{myInfo.userName}}</span>
+              <span>{{myInfo.phoneNumber}}</span>
             </div>
           </div>
           <div class="column pad-h-30 mar-v-30 al-center">
-            <span>4</span>
+            <span>{{zzList.length}}</span>
             <span class="p t-gray">中奖次数</span>
           </div>
           
         </div>
       </div>
     </div>
-    <div class="w-690-fill his-record bg-white radius-10" style="text-align: start">
+    <div class="his-record bg-gray radius-10" style="text-align: start">
       <div class="pad-v-10" style="border-bottom: 1px solid #f2f2f2">
-        <span class="mar-l-20 t-gray">历史中奖记录</span>
+        <span class="mar-l-20 t-gray pad-h-10">历史中奖记录</span>
       </div>
 
-      <div v-if="zzList.length !== 0">
+      <div class="pad-h-10" v-if="zzList.length !== 0">
         <div v-for="(item, index) in zzList" :key="index">
-          <div class="row item">
+          <div class="row item bg-white">
             <div class="column">
               <span>{{item.interactionName}}<span class="mar-l-20 p pad-h-10" style="background: #FF7233; color: #fff">{{item.prizeType}}</span></span>
               <span class="mar-t-10">{{item.createTime}}</span>
@@ -44,21 +44,29 @@
 </template>
 
 <script>
-import {getWinRecord} from '../../api/api'
+import {getWinRecord, selfInfo} from '../../api/api'
 export default {
   data() {
     return{
       bg: {backgroundImage: `url(${require('../../assets/images/zzjlbg.jpg')}`},
-      zzList: []
+      zzList: [],
+      myInfo: {}
     }
   },
   created() {
+    this.$store.commit('setNavtitle', '中奖纪录')
     this.getWinRecord()
+    this.getSelfInfo()
   },
   methods: {
     getWinRecord() {
       getWinRecord().then(res => {
         this.zzList = res.data
+      })
+    },
+    getSelfInfo() {
+      selfInfo().then(res => {
+        this.myInfo = res.data
       })
     }
   }
@@ -70,11 +78,11 @@ export default {
   width: 100%;
   height: 100%;
   background-color #f2f2f2;
-  position: fixed;
+  // position: fixed;
   .bg
     width: 100%;
     height: 400px;
-    position: fixed;
+    // position: fixed;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100% 100%;
@@ -86,7 +94,7 @@ export default {
       color #000
   .his-record
     position relative
-    top 520px
+    top 120px
     .item
       padding: 15px 15px;width: 90%;margin:0 auto;border-bottom: 1px solid #f2f2f2
 </style>

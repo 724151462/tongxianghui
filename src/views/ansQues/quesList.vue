@@ -69,7 +69,7 @@
 
 <script>
 import { Toast } from 'mint-ui'
-import {getSubject} from '../../api/api'
+import {getSubject, postAns} from '../../api/api'
 export default {
   data() {
     return {
@@ -103,10 +103,14 @@ export default {
   },
   methods: {
     finish() {
+      this.addOption()
       console.log(this.currentIndex)
       if(this.ansRes.length !== this.currentIndex+1){
         this.noAnsToast()
         return
+      }else{
+        postAns({interactionId: this.actId, ans: this.ansRes})
+        console.log(this.ansRes)
       }
       this.infoWindow = true
       // 提交过后按钮失效
@@ -120,6 +124,7 @@ export default {
       // }
     },
     next() {
+      this.addOption()
       console.log(this.currentIndex)
       let curAns = this.subjInfo[this.currentIndex].options.find(item => {
         console.log(item.checked)
@@ -132,12 +137,20 @@ export default {
         this.noAnsToast()
       }
     },
-    chooseAns(ansList, item, index) {
-      ansList.forEach(element => {
-        element.checked = false
+    addOption() {
+      let options = []
+      this.subjInfo[this.currentIndex].options.forEach(element => {
+        if(element.checked === true)
+        options.push(element.optionId)
       });
-      item.checked = true
-      this.ansRes[this.currentIndex] = index
+      this.ansRes[this.currentIndex] = {options, subjectId: this.subjInfo[this.currentIndex].subjectId}
+    },
+    chooseAns(ansList, item, index) {
+      let subType = this.subjInfo[this.currentIndex].multipleSubject
+      // ansList.forEach(element => {
+      //   element.checked = false
+      // });
+      item.checked = !item.checked
     },
     noAnsToast() {
       Toast('请先作答~')
