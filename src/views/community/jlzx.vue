@@ -17,33 +17,41 @@
           </div>
         </div>
         <p class="content t-gray">{{item.description}}</p>
-        <div v-if="item.topicImages.length !== 0">
-          <img v-for="(img, index) in item.topicImages" :key="index" :src="img" width="300" alt="">
+        <div class="row ju-start" v-if="item.topicImages.length !== 0">
+          <img v-for="(img, index) in item.topicImages" :key="index" :src="img" style="width: 30%;margin-right: 5%" alt="">
         </div>
         <div class="row bg-white" style="width: 100%">
           <div style="width:50%" class="row ju-center mar-v-10">
-            <img width="30" :src="require('../../assets/images/dianzan1.png')" alt="">
-            <span class="mar-l-10">441</span>
+            <img width="20" :src="require('../../assets/images/eye.png')" alt="">
+            <span class="mar-l-10">{{item.viewCount}}</span>
           </div>
           <div style="width:50%" class="row ju-center mar-v-10">
-            <img width="30" :src="require('../../assets/images/pinglun.png')" alt="">
-            <span class="mar-l-10">554</span>
+            <img width="20" :src="require('../../assets/images/pinglun.png')" alt="">
+            <span class="mar-l-10">{{item.commentCount}}</span>
           </div>
         </div>
       </div>
     </mt-tab-container-item>
     <mt-tab-container-item id="tab-container2">
-      <div class="mar-b-10 column ju-start bg-white pad-h-30">
-        <span class="pad-t-20 b">我发起的标题同乡之间。、、、、、</span>
-        <p class="content t-gray">互助而自由组件的非盈利互助而自由组件的非盈利、、、、、、、、、。。。。。。。。。。。。</p>
-        <img src="https://org.modao.cc/uploads3/images/2240/22402260/raw_1530869899.png" width="300" alt="">
+      <div v-for="(item, index) in topList" :key="index" class="mar-b-10 column ju-start bg-white pad-h-30" @click="detail(item.topicId)">
+        <div class="row mar-t-10">
+          <img class="avatar" :src="item.avatar" alt="">
+          <div class="column mar-l-10">
+            <span class="pad-b-20 b">{{item.topicTitle}}</span>
+            <span class="t-gray p">{{item.subDate}}</span>
+          </div>
+        </div>
+        <p class="content t-gray">{{item.description}}</p>
+        <div class="row ju-start" v-if="item.topicImages.length !== 0">
+          <img v-for="(img, index) in item.topicImages" :key="index" :src="img" style="width: 30%;margin-right: 5%" alt="">
+        </div>
         <div class="row bg-white" style="width: 100%">
           <div style="width:50%" class="row ju-center mar-v-10">
-            <img width="30" :src="require('../../assets/images/dianzan1.png')" alt="">
+            <img width="20" :src="require('../../assets/images/dianzan1.png')" alt="">
             <span class="mar-l-10">441</span>
           </div>
           <div style="width:50%" class="row ju-center mar-v-10">
-            <img width="30" :src="require('../../assets/images/pinglun.png')" alt="">
+            <img width="20" :src="require('../../assets/images/pinglun.png')" alt="">
             <span class="mar-l-10">554</span>
           </div>
         </div>
@@ -58,7 +66,7 @@
 </template>
 
 <script>
-import {topicList} from '../../api/api'
+import {topicList, myTop} from '../../api/api'
 export default {
   data() {
     return{
@@ -75,11 +83,23 @@ export default {
         this.topList = res.data.pageData
       })
     },
+    getMyTop() {
+      myTop().then(res => {
+        this.topList = res.data.pageData
+      })
+    },
     handleTchange(tname) {
       this.active = tname
+      if(tname === 'tab-container1') {
+        this.getList()
+      }else{
+        this.getMyTop()
+      }
+      
     },
-    detail() {
-      this.$router.push({path: '/com/detail'})
+    detail(id) {
+      console.log(id)
+      this.$router.push({path: '/com/detail', query:{id}})
     },
     addTz() {
       this.$router.push({path: '/com/postcom'})

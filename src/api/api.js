@@ -62,3 +62,31 @@ export function saveInfo(data) {
 export function topicList() {
   return commonsAjax('/wxx/v1/user/topic')
 }
+
+export function createTopic(data) {
+  return commonsAjax(`/wxx/v1/topic/save`, data, 'put')
+}
+
+export function topicDetail(data) {
+  return commonsAjax(`/wxx/v1/topic/${data}`)
+}
+
+export function topicCommentDetail(data) {
+  return commonsAjax(`/wxx/v1/topic/${data}/comment/list`)
+}
+
+export function sendComment(data) {
+  return commonsAjax(`/wxx/v1/topic/discuss`, data, 'put')
+}
+
+export function repComment(data) {
+  return commonsAjax(`/wxx/v1/topic/comment/reply`, data, 'put')
+}
+
+export function myTop() {
+  return commonsAjax(`/wxx/v1/topic/list`)
+}
+
+export function prizeStatus(data) {
+  return commonsAjax(`/wxx/v1/comment/${data}`)
+}

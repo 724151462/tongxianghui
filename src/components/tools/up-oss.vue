@@ -19,7 +19,7 @@
 <template>
   <div class="row ju-center">
     <img v-if="plus" width="50" @click="goUp" :src="require('../../assets/images/plus.jpg')" alt="">
-    <el-button v-else type="primary" @click="goUp" id="male">{{btnText}}</el-button>
+    <mt-button size="small" v-else type="primary" @click="goUp" id="male"><img src="../../assets/images/photo.png" height="20" width="20" slot="icon"></mt-button>
     <!-- <div>{{schedule}}</div> -->
     <input type="file" :id="inputs" @change="upInput">
   </div>
